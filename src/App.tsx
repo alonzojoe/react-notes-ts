@@ -9,7 +9,7 @@ export type Note = {
 
 export type NoteData = {
   title: string;
-  markdwn: string;
+  markdown: string;
   tags: Tag[];
 };
 
@@ -17,7 +17,6 @@ export type Tag = {
   id: string;
   label: string;
 };
-
 
 function App() {
   return (
