@@ -12,6 +12,7 @@ const NoteForm = ({ onSubmit }: NoteFormProps) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const markdownRef = useRef<HTMLTextAreaElement>(null);
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onSubmit({
