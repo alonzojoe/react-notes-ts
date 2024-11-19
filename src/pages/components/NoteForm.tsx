@@ -23,6 +23,9 @@ const NoteForm = ({ onSubmit, onAddTag, availableTags }: NoteFormProps) => {
       markdown: markdownRef.current!.value,
       tags: selectedTags,
     });
+
+    titleRef.current!.value = "";
+    markdownRef.current!.value = "";
   };
 
   return (
