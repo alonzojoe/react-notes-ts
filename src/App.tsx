@@ -2,7 +2,8 @@ import { useMemo } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 import { Routes, Route, Navigate } from "react-router-dom";
-import NewNote from "./pages/NewNote";
+import NewNote from "./pages/NewNote/NewNote";
+import NoteList from "./pages/NoteList/NoteList";
 import useLocalStorage from "./hooks/useLocalStorage";
 import { v4 as uuidV4 } from "uuid";
 
@@ -60,7 +61,7 @@ function App() {
   return (
     <Container className="mt-4">
       <Routes>
-        <Route path="/" element={<h1>Home</h1>} />
+        <Route path="/" element={<NoteList availableTags={tags} />} />
         <Route
           path="/new"
           element={

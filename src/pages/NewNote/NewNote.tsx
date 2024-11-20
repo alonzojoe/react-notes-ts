@@ -1,5 +1,5 @@
 import NoteForm from "./components/NoteForm";
-import { NoteData, Tag } from "../App";
+import { NoteData, Tag } from "../../App";
 
 const NewNote = ({
   onSubmit,
@@ -13,7 +13,11 @@ const NewNote = ({
   return (
     <>
       <h1 className="mb-4">New Note</h1>
-      <NoteForm onSubmit={onSubmit} onAddTag={onAddTag} availableTags={availableTags} />
+      <NoteForm
+        onSubmit={onSubmit}
+        onAddTag={onAddTag}
+        availableTags={availableTags}
+      />
     </>
   );
 };
