@@ -80,13 +80,17 @@ const NoteList = ({ availableTags, notes }: NoteListProps) => {
           </Col>
         </Row>
       </Form>
-      <Row xs={1} sm={2} lg={3} className="g-3 mt-3">
-        {filteredNotes.map((note) => (
-          <Col key={note.id}>
-            <NoteCard />
-          </Col>
-        ))}
-      </Row>
+      {filteredNotes.length === 0 ? (
+        <p className="text-center mt-5 fs-5">No record(s) found.</p>
+      ) : (
+        <Row xs={1} sm={2} lg={3} className="g-3 mt-3">
+          {filteredNotes.map((note) => (
+            <Col key={note.id}>
+              <NoteCard />
+            </Col>
+          ))}
+        </Row>
+      )}
     </>
   );
 };
