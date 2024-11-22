@@ -61,7 +61,10 @@ function App() {
   return (
     <Container className="mt-4">
       <Routes>
-        <Route path="/" element={<NoteList availableTags={tags} />} />
+        <Route
+          path="/"
+          element={<NoteList availableTags={tags} notes={noteWithTags} />}
+        />
         <Route
           path="/new"
           element={
