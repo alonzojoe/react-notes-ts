@@ -27,11 +27,15 @@ export function NoteCard({ id, title, tags }: NoteCardProps) {
             direction="horizontal"
             className="justify-content-center flex-wrap"
           >
-            {tags.map((tag) => (
-              <Badge className="text-truncate" key={tag.id}>
-                {tag.label}
-              </Badge>
-            ))}
+            {tags.length > 0 && (
+              <>
+                {tags.map((tag) => (
+                  <Badge className="text-truncate" key={tag.id}>
+                    {tag.label}
+                  </Badge>
+                ))}
+              </>
+            )}
           </Stack>
         </Stack>
       </Card.Body>
