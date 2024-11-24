@@ -5,6 +5,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import NewNote from "./pages/NewNote/NewNote";
 import NoteList from "./pages/NoteList/NoteList";
 import NoteLayout from "./layouts/NoteLayout";
+import Note from "./pages/Note/Note";
 import useLocalStorage from "./hooks/useLocalStorage";
 import { v4 as uuidV4 } from "uuid";
 
@@ -77,11 +78,11 @@ function App() {
           }
         />
         <Route path="/:id" element={<NoteLayout notes={noteWithTags} />}>
-          <Route index element={<h1>Show</h1>} />
+          <Route index element={<Note />} />
           <Route path="edit" element={<h1>Edit</h1>} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
-      </Routes> 
+      </Routes>
     </Container>
   );
 }
