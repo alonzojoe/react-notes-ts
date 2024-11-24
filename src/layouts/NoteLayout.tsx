@@ -8,8 +8,8 @@ type NoteLayoutProps = {
 const NoteLayout = ({ notes }: NoteLayoutProps) => {
   const { id } = useParams();
   const note = notes.find((note) => note.id === id);
-
-  if (note === null) <Navigate to="/" replace />;
+  console.log("note layout", note);
+  if (note === undefined) return <Navigate to="/" replace />;
 
   return <Outlet context={note} />;
 };
