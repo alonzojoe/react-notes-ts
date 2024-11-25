@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import NewNote from "./pages/NoteForms/NewNote";
 import EditNote from "./pages/NoteForms/EditNote";
 import NoteList from "./pages/NoteList/NoteList";
@@ -36,6 +36,7 @@ export type Tag = {
 };
 
 function App() {
+  const navigate = useNavigate();
   const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES", []);
   const [tags, setTags] = useLocalStorage<Tag[]>("TAGS", []);
 
@@ -76,6 +77,7 @@ function App() {
     setNotes((prevNotes) => {
       return prevNotes.filter((note) => note.id !== id);
     });
+    navigate("/");
   };
 
   const addTag = (tag: Tag) => {
@@ -100,7 +102,7 @@ function App() {
           }
         />
         <Route path="/:id" element={<NoteLayout notes={noteWithTags} />}>
-          <Route index element={<Note onDelete={onDeleteNote}/>} />
+          <Route index element={<Note onDelete={onDeleteNote} />} />
           <Route
             path="edit"
             element={
