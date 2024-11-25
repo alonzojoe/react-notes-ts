@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useNote } from "../../layouts/NoteLayout";
 import ReactMarkDown from "react-markdown";
 
-const Note = () => {
+const Note = ({ onDelete }: { onDelete: (id: string) => void }) => {
   const note = useNote();
   const { id, title, tags, markdown } = note;
 
@@ -29,7 +29,9 @@ const Note = () => {
             <Link to={`/${id}/edit`}>
               <Button variant="primary">Edit</Button>
             </Link>
-            <Button variant="outline-danger">Delete</Button>
+            <Button variant="outline-danger" onClick={() => onDelete(id)}>
+              Delete
+            </Button>
             <Link to="/">
               <Button variant="outline-secondary">Back</Button>
             </Link>

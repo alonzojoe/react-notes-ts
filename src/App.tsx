@@ -66,10 +66,15 @@ function App() {
           return note;
         }
       });
-      return [
-        ...prevNotes,
-        { ...data, id: uuidV4(), tagIds: tags.map((tag) => tag.id) },
-      ];
+    });
+  };
+
+  const onDeleteNote = (id: string) => {
+    const confirmation = confirm("Are you sure to delete this note?");
+    if (!confirmation) return;
+
+    setNotes((prevNotes) => {
+      return prevNotes.filter((note) => note.id !== id);
     });
   };
 
@@ -95,7 +100,7 @@ function App() {
           }
         />
         <Route path="/:id" element={<NoteLayout notes={noteWithTags} />}>
-          <Route index element={<Note />} />
+          <Route index element={<Note onDelete={onDeleteNote}/>} />
           <Route
             path="edit"
             element={
