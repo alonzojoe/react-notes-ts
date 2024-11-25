@@ -84,12 +84,40 @@ function App() {
     setTags((prev) => [...prev, tag]);
   };
 
+  const updateTag = (id: string, label: string) => {
+    setTags((prevTags) => {
+      return prevTags.map((tag) => {
+        if (tag.id === id) {
+          return { ...tag, label };
+        } else {
+          return tag;
+        }
+      });
+    });
+  };
+
+  const deleteTag = (id: string) => {
+    const confirmation = confirm("Are you sure to delete this tag?");
+    if (!confirmation) return;
+
+    setTags((prevTag) => {
+      return prevTag.filter((tag) => tag.id !== id);
+    });
+  };
+
   return (
     <Container className="mt-4">
       <Routes>
         <Route
           path="/"
-          element={<NoteList availableTags={tags} notes={noteWithTags} />}
+          element={
+            <NoteList
+              availableTags={tags}
+              notes={noteWithTags}
+              updateTag={updateTag}
+              deleteTag={deleteTag}
+            />
+          }
         />
         <Route
           path="/new"

@@ -9,9 +9,16 @@ import { Tag, Note } from "../../App";
 type NoteListProps = {
   availableTags: Tag[];
   notes: Note[];
+  updateTag: (id: string, label: string) => void;
+  deleteTag: (id: string) => void;
 };
 
-const NoteList = ({ availableTags, notes }: NoteListProps) => {
+const NoteList = ({
+  availableTags,
+  notes,
+  updateTag,
+  deleteTag,
+}: NoteListProps) => {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [title, setTitle] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -28,10 +35,6 @@ const NoteList = ({ availableTags, notes }: NoteListProps) => {
       );
     });
   }, [title, selectedTags, notes]);
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
 
   return (
     <>
@@ -101,8 +104,10 @@ const NoteList = ({ availableTags, notes }: NoteListProps) => {
       )}
       <EditTagsModal
         show={isOpen}
-        handleClose={handleClose}
+        handleClose={() => setIsOpen(false)}
         availableTags={availableTags}
+        onUpdate={updateTag}
+        onDelete={deleteTag}
       />
     </>
   );
